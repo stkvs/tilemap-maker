@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="mode-switch">
+        <p>Toggle Dark Mode</p>
+        <div class="toggle-switch">
+            <input class="toggle-input" id="toggle" type="checkbox" />
+            <label class="toggle-label" for="toggle"></label>
+        </div>          
+    </div>
+
+    <aside>
+        <h3>Tilemap Maker</h3>
+
+        <div class="gridMaker">
+            <p>Grid Width</p>
+            <input type="text" id="gridX">
+
+            <p>Grid Height</p>
+            <input type="text" id="gridY">
+            <button id="createGrid">Create Grid</button>
+        </div>
+
+        <div class="info">
+            <h3>Tilemap Info</h3>
+            <p>Tilemap Width: <span id="tilemapWidth"></span></p>
+            <p>Tilemap Height: <span id="tilemapHeight"></span></p>
+
+            <button id="export">Export as Variable</button>
+        </div>
+
+        <div class="json">
+            <h3>Export Map</h3>
+            <textarea name="" id="json" ></textarea>
+        </div>
+
+    </aside>
+
+    <div class="editor"></div>
+
+    <aside>
+        <h3>Editing a tile</h3>
+        <div class="list">
+            <p>To edit a tile you need to click on it and then click on either:</p>
+            <ul>
+                <li><b>X</b>: Non-explorable tile</li>
+                <li><b>1</b>: Ground (NaN element)</li>
+                <li><b>2</b>: Interactive Ground</li>
+            </ul>
+        </div>
+
+        <button id="clear">Clear Grid</button>
+    </aside>
+
+    <script src="index.js"></script>
+</body>
+</html>
