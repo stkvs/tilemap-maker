@@ -95,6 +95,27 @@ jsonButton.addEventListener('click', generateJSON);
 document.addEventListener("DOMContentLoaded", function () {
     const toggleInput = document.getElementById("toggle");
 
+    // Function to set a cookie
+    function setCookie(name, value, days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        const expires = "expires=" + date.toUTCString();
+        document.cookie = name + "=" + value + ";" + expires + ";path=/";
+    }
+
+    // Function to get a cookie
+    function getCookie(name) {
+        const nameEQ = name + "=";
+        const ca = document.cookie.split(';');
+        for(let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    // Function to toggle dark mode
     const toggleDarkMode = () => {
         const elements = document.querySelectorAll("*:not(button):not(.grid *):not(.grid):not(.toggle-switch *)");
 
@@ -107,7 +128,22 @@ document.addEventListener("DOMContentLoaded", function () {
                 element.style.backgroundColor = "";
             }
         });
+
+        // Set cookie based on the toggle state
+        setCookie('darkMode', toggleInput.checked, 7); // Remember for 7 days
     };
 
+    // Check cookie and set the initial state of toggleInput
+    const darkModeCookie = getCookie('darkMode');
+    if (darkModeCookie === 'true') {
+        toggleInput.checked = true;
+    } else {
+        toggleInput.checked = false;
+    }
+
+    // Apply the dark mode based on the cookie
+    toggleDarkMode();
+
+    // Add event listener for toggle change
     toggleInput.addEventListener("change", toggleDarkMode);
 });
