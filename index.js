@@ -60,24 +60,31 @@ function generateJSON() {
     const gridWidth = document.querySelector('#gridX').value;
     const gridHeight = document.querySelector('#gridY').value;
 
-    let grid = [];
+    let grid = {
+        width: null,
+        height: null,
+        map: []
+    };
+
+    grid.width = gridWidth;
+    grid.height = gridHeight;
     
     for (let i = 0; i < gridWidth * gridHeight; i++) {
-        if (i % gridWidth === 0 && i !== 0) {
-            grid.push("\n");
+        if ((i + 1) % gridWidth === 0 && i !== 0) {
+            grid.map.push("\n");
         }
         if (cells[i].innerHTML === '1') {
-            grid.push(1);
+            grid.map.push(1);
         } else if (cells[i].innerHTML === '2') {
-            grid.push(2);
+            grid.map.push(2);
         } else {
-            grid.push(0);
+            grid.map.push(0);
         }
     }
 
     console.log(grid);
     const jsonArea = document.querySelector('.json textarea');
-    jsonArea.value = `const map = [${grid}]`;
+    jsonArea.value = `const map = { width: ${grid.width}, height: ${grid.height}, map: [${grid.map}]}`;
 }
 
 generateGrid.addEventListener('click', createGrid);
