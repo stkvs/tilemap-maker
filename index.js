@@ -70,7 +70,7 @@ function generateJSON() {
     grid.height = gridHeight;
     
     for (let i = 0; i < gridWidth * gridHeight; i++) {
-        if (cells[i].innerHTML === '0') {
+        if (cells[i].innerHTML === 'X') {
             grid.map.push(0);
         } else if (cells[i].innerHTML === '2') {
             grid.map.push(2);
